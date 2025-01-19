@@ -1,6 +1,6 @@
 from collections import deque
 
-materials = deque(map(int, input().split()))
+materials = list(map(int, input().split()))
 magic_level = deque(map(int, input().split()))
 crafted_presents = {}
 table = {  # required magic : present
@@ -20,9 +20,7 @@ while materials and magic_level:
             crafted_presents[present] = 1
         materials.pop(), magic_level.popleft()
     elif total_magic_level < 0:
-        total_sum = materials[-1] + magic_level[0]
-        materials.pop(), magic_level.popleft()
-        materials.append(total_sum)
+        materials.append(materials.pop() + magic_level.popleft())
     elif total_magic_level > 0:
         magic_level.popleft()
         materials[-1] += 15
@@ -32,11 +30,12 @@ while materials and magic_level:
         if magic_level[0] == 0:
             magic_level.popleft()
 
-if 'Doll' and "Wooden train" in crafted_presents or "Teddy bear" and "Bicycle" in crafted_presents:
+if ('Doll' in crafted_presents and "Wooden train" in crafted_presents) or (
+        "Teddy bear" in crafted_presents and "Bicycle" in crafted_presents):
     print("The presents are crafted! Merry Christmas!")
 else:
     print("No presents this Christmas!")
-print(f"Materials left: {', '.join(map(str, reversed(materials)))}") if materials else None
-print(f"Magic left: {', '.join(map(str, magic_level))}") if magic_level else None
+print(f"Materials left: {', '.join([str(x) for x in reversed(materials)])}") if materials else None
+print(f"Magic left: {', '.join([str(x) for x in magic_level])}") if magic_level else None
 for k, v in sorted(crafted_presents.items()):
     print(f'{k}: {v}')
