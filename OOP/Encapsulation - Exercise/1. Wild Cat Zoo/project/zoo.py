@@ -1,6 +1,6 @@
 from typing import List, Union
 from project.worker import Worker
-from project.animal import Animal
+from project.animals import Animal
 
 
 class Zoo:
@@ -14,7 +14,7 @@ class Zoo:
 
     def add_animal(self, animal: Animal, price) -> str:
         if self.__animal_capacity <= len(self.animals):
-            return "Not enough space for animal"
+            return "Not enough space for animals"
         if self.__budget < price:
             return "Not enough budget"
         self.animals.append(animal)
@@ -57,13 +57,13 @@ class Zoo:
         # lions = []
         # cheetahs = []
         #
-        # for animal in self.animals:
-        #     if animal.__class__.__name__ == "Tiger":
-        #         tigers.append(repr(animal))
-        #     elif animal.__class__.__name__ == "Lion"
-        #         lions.append(repr(animal))
+        # for animals in self.animals:
+        #     if animals.__class__.__name__ == "Tiger":
+        #         tigers.append(repr(animals))
+        #     elif animals.__class__.__name__ == "Lion"
+        #         lions.append(repr(animals))
         #     else:
-        #         cheetahs.append(repr(animal))
+        #         cheetahs.append(repr(animals))
         #
         # result = [f"You have {len(tigers) + len(lions) + len(cheetahs)} animals", f"----- {len(lions)} Lions:"]
         # result.extend(lions)
